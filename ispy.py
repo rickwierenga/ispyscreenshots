@@ -61,8 +61,11 @@ def get_image_url(post_url):
 
   if "imgur.com" in post_url:
     imgur_html = requests.get(post_url).text
-    links = re.findall(r'https:\/\/i\.imgur\.com\/\w+\.(?:jpg|png)', imgur_html)
-    return links[0]
+    try:
+      return re.findall(r'https:\/\/i\.imgur\.com\/\w+\.(?:jpg|png)', imgur_html)[0]
+    except IndexError:
+      # no matches were found.
+      return None
 
   return None
 
