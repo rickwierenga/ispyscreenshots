@@ -9,6 +9,7 @@ import PIL.Image
 import plyvel
 import praw
 import prawcore
+import pytesseract
 import tensorflow as tf
 
 
@@ -26,17 +27,25 @@ def predict(path):
   """predict whether an image is a screenshot or not"""
   global model
 
-  # preprocess image
+  # load image
   try:
-    img = PIL.Image.open(path).resize((224, 224)).convert('RGB')
+    img = PIL.Image.open(path).convert('RGB')
   except OSError:
     return None, None
+
+  # see if we can read text
+  contains_text = (pytesseract.image_to_string(img) != '')
+
+  # preprocess image for ML
+  img = img.resize((224, 224))
   img = np.asarray(img) / 255.
   img = img.reshape((1, 224, 224, 3)) # set batch size to 1
 
   # [0][0] selects the first (only) node from the first (only) item in this batch.
   score = model.predict(img)[0][0]
-  return int(score*100), bool(score > .65)
+
+  # post should be removed if we have 65%+ confidence and text
+  return int(score*100), bool(score > .65) and contains_text
 
 
 def get_image_url(post_url):

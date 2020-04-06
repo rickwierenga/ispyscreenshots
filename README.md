@@ -12,7 +12,7 @@ In rare cases, exceptions are made for the purpose of censoring personal informa
 
 ## How it works
 
-This bot uses machine learning to predict whether an image violates rule #1. The model was trained with [TensorFlow](https://www.tensorflow.org), see [`train.ipynb`](train.ipynb). For machine learning people, the model is just a [169 layer DenseNet](https://arxiv.org/pdf/1608.06993.pdf) trained from scratch.
+This bot uses machine learning to predict whether an image violates rule #1. The model was trained with [TensorFlow](https://www.tensorflow.org), see [`train.ipynb`](train.ipynb). For machine learning people, the model is just a [169 layer DenseNet](https://arxiv.org/pdf/1608.06993.pdf) trained from scratch. The image is also run through an OCR program to determine whether or not text is present, because images without text can't violate rule #1. This helps protect against a bias for digital art. If the model's confidence is more than 65% and text is present, the post will be removed.
 
 It loads the newest posts from r/pics every 10 seconds and checks which posts are not classified yet. New posts are temporarily downloaded, preprocessed and classified.
 
