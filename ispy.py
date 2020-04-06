@@ -34,7 +34,10 @@ def predict(path):
     return None, None
 
   # see if we can read text
-  contains_text = (pytesseract.image_to_string(img) != '')
+  try:
+    contains_text = (pytesseract.image_to_string(img) != '')
+  except pytesseract.pytesseract.TesseractError:
+    return None, None
 
   # preprocess image for ML
   img = img.resize((224, 224))
