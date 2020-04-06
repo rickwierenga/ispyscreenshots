@@ -87,7 +87,7 @@ u/{user}, thank you for your submission. This post has been automatically remove
 
 * Rule 1B: No pictures with added or superimposed digital text, emojis, and "MS Paint"-like scribbles. Exceptions to this rule include watermarks serving to credit the original author, and blurring/boxing out of personal information. "Photoshopped" or otherwise manipulated images are allowed.
 
-In rare cases, exceptions are made for the purpose of censoring personal information or crediting the photographer. If you feel that this is such an exception, or that the bot has made a mistake, send us a modmail message and we will consider re-approving your post. Please upvote or downvote this comment depending on whether the prediction is correct so future generations will be smarter. Thank you.
+In rare cases, exceptions are made for the purpose of censoring personal information or crediting the photographer. If you feel that this is such an exception, or that the bot has made a mistake, [send us a modmail message](https://reddit.com/message/compose?to=%2Fr%2Fpics) and we will consider re-approving your post. Please upvote or downvote this comment depending on whether the prediction is correct so future generations will be smarter. Thank you.
 
 ---
 
