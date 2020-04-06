@@ -36,7 +36,7 @@ def predict(path):
   # see if we can read text
   try:
     contains_text = (pytesseract.image_to_string(img) != '')
-  except pytesseract.pytesseract.TesseractError:
+  except (pytesseract.pytesseract.TesseractError, OSError):
     return None, None
 
   # preprocess image for ML
