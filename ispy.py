@@ -101,7 +101,7 @@ I am a bot, and this action was performed automatically. Visit the [GitHub](http
 def main():
   while True:
     # we expect at most 10 new posts in 10 seconds
-    new_posts = reddit.subreddit('pics_bot').new(limit=10)
+    new_posts = reddit.subreddit('pics').new(limit=10)
     while True:
       try:
         post = next(new_posts)
