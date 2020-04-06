@@ -8,6 +8,7 @@ import numpy as np
 import PIL.Image
 import plyvel
 import praw
+import prawcore
 import tensorflow as tf
 
 
@@ -101,8 +102,15 @@ def main():
   while True:
     # we expect at most 10 new posts in 10 seconds
     new_posts = reddit.subreddit('pics_bot').new(limit=10)
-    for post in new_posts:
-      print(post.id)
+    while True:
+      try:
+        post = next(new_posts)
+        print(post.id)
+      except StopIteration:
+        break
+      except prawcore.exceptions.ServerError:
+        break
+
       if is_checked(post.id):
         continue
 
@@ -114,6 +122,7 @@ def main():
         continue
       if not_allowed:
         add_comment(post, score)
+
       os.remove(path)
       # if everything went ok, don't check this post again.
       db.put(post.id.encode('utf-8'), bytes([score]))
