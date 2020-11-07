@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import time
 import os
 import re
@@ -14,9 +15,12 @@ import tensorflow as tf
 
 
 db = plyvel.DB('/tmp/ispydb/', create_if_missing=True)
-model = tf.keras.models.load_model('model.h5')
+dirname = os.path.dirname(__file__)
+model_filename = os.path.join(dirname, 'model.h5')
+model = tf.keras.models.load_model(model_filename)
 # you need to have config.yaml
-with open('config.yaml', 'r') as f:
+config_filename = os.path.join(dirname, 'config.yaml')
+with open(config_filename, 'r') as f:
   config = yaml.load(f, Loader=yaml.FullLoader)['reddit']
 reddit = praw.Reddit(client_id=config['client_id'], client_secret=config['client_secret'],
                      password=config['password'], user_agent='ispy',
