@@ -98,6 +98,11 @@ def download(post):
 
 
 def add_comment(post, score):
+  link = (
+    'https://www.reddit.com/message/compose?to=/r/pics&subject=Screenshot%20Removal%20Appeal&message='
+    '**DO%20NOT%20MODIFY**%0D%0ALink%20to%20post:%20{url}%0D%0A---%0D%0A%0D%0AAdditional%20Details:'
+  ).format(**{'url': "https://www.reddit.com" + post.permalink})
+
   """blame the user"""
   text = '''
 u/{user}, thank you for your submission. This post has been automatically removed because it appears to violate Rule 1 ({confidence}% confidence).
@@ -106,15 +111,17 @@ u/{user}, thank you for your submission. This post has been automatically remove
 
 * Rule 1B: No pictures with added or superimposed digital text, emojis, and "MS Paint"-like scribbles. Exceptions to this rule include watermarks serving to credit the original author, and blurring/boxing out of personal information. "Photoshopped" or otherwise manipulated images are allowed.
 
-In rare cases, exceptions are made for the purpose of censoring personal information or crediting the photographer. If you feel that this is such an exception, or that the bot has made a mistake, [send us a modmail message](https://reddit.com/message/compose?to=%2Fr%2Fpics) and we will consider re-approving your post. Please upvote or downvote this comment depending on whether the prediction is correct so future generations of this bot will be smarter. Thank you.
+In rare cases, exceptions are made for the purpose of censoring personal information or crediting the photographer. If you feel that this is such an exception, or that the bot has made a mistake, [send us a modmail message]({link}) and we will consider re-approving your post. Please upvote or downvote this comment depending on whether the prediction is correct so future generations of this bot will be smarter. Thank you.
 
 ---
 
 I am a bot, and this action was performed automatically. Visit the [GitHub](https://github.com/rickwierenga/ispyscreenshots) for more information.
   '''
+
   post.reply(text.format(**{
     'user': post.author,
-    'confidence': score}))
+    'confidence': score,
+    'link': link}))
 
 
 def main():
