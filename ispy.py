@@ -105,17 +105,11 @@ def add_comment(post, score):
 
   """blame the user"""
   text = '''
-u/{user}, thank you for your submission. This post has been automatically removed because it appears to violate Rule 1 ({confidence}% confidence).
+u/{user}, thank you for your submission. This post has been automatically removed because it appears to violate Rules 1/2 ({confidence}% confidence).
 
-* Rule 1A: No screenshots or pics where the only focus is a screen.
+* Rule 1: No screenshots or pics where the only focus is a screen.
 
-* Rule 1B: No pictures with added or superimposed digital text, emojis, and "MS Paint"-like scribbles. Exceptions to this rule include watermarks serving to credit the original author, and blurring/boxing out of personal information. "Photoshopped" or otherwise manipulated images are allowed.
-
-In rare cases, exceptions are made for the purpose of censoring personal information or crediting the photographer. If you feel that this is such an exception, or that the bot has made a mistake, [send us a modmail message]({link}) and we will consider re-approving your post. Please upvote or downvote this comment depending on whether the prediction is correct so future generations of this bot will be smarter. Thank you.
-
----
-
-I am a bot, and this action was performed automatically. Visit the [GitHub](https://github.com/rickwierenga/ispyscreenshots) for more information.
+* Rule 2: No pictures with added or superimposed digital text, emojis, and "MS Paint"-like scribbles. Exceptions to this rule include watermarks serving to credit the original author, and blurring/boxing out of personal information. "Photoshopped" or otherwise manipulated images are allowed.
   '''
 
   post.reply(text.format(**{
